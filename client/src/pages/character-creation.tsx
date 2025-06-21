@@ -112,9 +112,9 @@ export default function CharacterCreation() {
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4 animate-float">
             <Crown className="inline-block mr-4 text-purple-400" size={48} />
-            Character Genesis
+            キャラクター創世記
           </h1>
-          <p className="text-slate-300 text-lg mb-8">Discover your true character through mystical choices</p>
+          <p className="text-slate-300 text-lg mb-8">神秘的な選択であなたの真の性格を発見してください</p>
           
           {/* Progress Indicator */}
           <div className="flex justify-center items-center space-x-4 mb-8">
@@ -130,7 +130,7 @@ export default function CharacterCreation() {
                 />
               ))}
             </div>
-            <span className="text-slate-400 text-sm">Stage {currentStage} of 4</span>
+            <span className="text-slate-400 text-sm">ステージ {currentStage} / 4</span>
           </div>
         </div>
 
@@ -161,7 +161,7 @@ export default function CharacterCreation() {
             disabled={currentStage === 1}
             className="bg-slate-700 hover:bg-slate-600 border-slate-600 text-slate-200"
           >
-            Previous
+            前へ
           </Button>
           
           <Button
@@ -170,7 +170,7 @@ export default function CharacterCreation() {
             className="bg-slate-700 hover:bg-slate-600 border-slate-600 text-slate-200"
           >
             <RotateCcw className="mr-2" size={16} />
-            Restart
+            やり直し
           </Button>
           
           <Button
@@ -178,7 +178,7 @@ export default function CharacterCreation() {
             disabled={!currentChoice || updateSessionMutation.isPending}
             className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white"
           >
-            {updateSessionMutation.isPending ? "Processing..." : "Continue"}
+            {updateSessionMutation.isPending ? "処理中..." : "続ける"}
           </Button>
         </div>
       </div>

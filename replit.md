@@ -91,8 +91,10 @@ Located in `shared/schema.ts`:
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Interface language: Japanese
 
 ## Changelog
 
 Changelog:
 - June 20, 2025. Initial setup
+- June 21, 2025. Updated interface to Japanese language - all text in UI now displays in Japanese including questions, choices, buttons, and result descriptions

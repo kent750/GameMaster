@@ -8,44 +8,44 @@ interface CharacterData {
 
 const traitMappings: Record<string, string[]> = {
   // Warrior traits
-  warrior: ["Warrior", "Berserker", "Champion"],
-  passionate: ["Fire Walker", "Flame Heart", "Ember Soul"],
-  direct: ["Vanguard", "Straightforward", "Bold"],
-  destroyer: ["Destroyer", "Conqueror", "Annihilator"],
-  powerful: ["Powerhouse", "Titan", "Colossus"],
-  ambitious: ["Ambitious", "Aspiring", "Driven"],
+  warrior: ["戦士", "狂戦士", "勇者"],
+  passionate: ["炎歩者", "炎心", "燃魂"],
+  direct: ["先駆者", "直進", "勇敢"],
+  destroyer: ["破壊者", "征服者", "殲滅者"],
+  powerful: ["強者", "巨人", "巨像"],
+  ambitious: ["野心家", "向上心", "駆動者"],
   
   // Mystic traits
-  mystic: ["Mystic", "Oracle", "Seer"],
-  intuitive: ["Intuitive", "Empath", "Sensitive"],
-  mysterious: ["Shadow Walker", "Enigma", "Veiled"],
-  sage: ["Sage", "Scholar", "Philosopher"],
-  seeker: ["Truth Seeker", "Explorer", "Wanderer"],
-  enlightened: ["Enlightened", "Awakened", "Illuminated"],
-  transcendent: ["Transcendent", "Ascended", "Divine"],
+  mystic: ["神秘家", "神託者", "予見者"],
+  intuitive: ["直感者", "共感者", "感受者"],
+  mysterious: ["影歩者", "謎", "隠者"],
+  sage: ["賢者", "学者", "哲学者"],
+  seeker: ["真理探求者", "探検者", "放浪者"],
+  enlightened: ["悟者", "覚醒者", "光明者"],
+  transcendent: ["超越者", "昇天者", "神聖者"],
   
   // Guardian traits
-  guardian: ["Guardian", "Protector", "Sentinel"],
-  harmonious: ["Harmonious", "Balanced", "Centered"],
-  balanced: ["Balance Keeper", "Equilibrium", "Steady"],
-  protective: ["Shield Bearer", "Defender", "Warden"],
-  vigilant: ["Vigilant", "Watchful", "Alert"],
-  stable: ["Stable", "Reliable", "Steadfast"],
-  nurturing: ["Nurturer", "Caretaker", "Life Bringer"],
+  guardian: ["守護者", "保護者", "歩哨"],
+  harmonious: ["調和者", "均衡者", "中心者"],
+  balanced: ["天秤守", "平衡", "安定者"],
+  protective: ["盾持ち", "防御者", "監視者"],
+  vigilant: ["警戒者", "見張り", "敏感者"],
+  stable: ["安定", "信頼", "堅実"],
+  nurturing: ["育成者", "看護者", "生命運び"],
   
   // Healer traits
-  healer: ["Healer", "Life Mender", "Restoration"],
-  compassionate: ["Compassionate", "Kind Heart", "Merciful"],
-  selfless: ["Selfless", "Sacrificial", "Noble"],
+  healer: ["治癒者", "生命修復者", "回復"],
+  compassionate: ["慈愛者", "優心", "慈悲深い"],
+  selfless: ["無私", "犠牲的", "高潔"],
   
   // Scholar traits
-  scholar: ["Scholar", "Researcher", "Academic"],
-  analytical: ["Analytical", "Logical", "Methodical"],
-  wise: ["Wise", "Learned", "Knowledgeable"],
+  scholar: ["学者", "研究者", "学問者"],
+  analytical: ["分析者", "論理的", "体系的"],
+  wise: ["賢明", "博学", "知識者"],
   
   // Legend traits
-  legend: ["Legend", "Mythic", "Eternal"],
-  eternal: ["Eternal", "Timeless", "Immortal"]
+  legend: ["伝説", "神話的", "永遠"],
+  eternal: ["永遠", "不滅", "不朽"]
 };
 
 const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
@@ -171,31 +171,43 @@ export function calculateCharacter(choices: number[]): CharacterData {
 }
 
 function generateDescription(categories: string[], attributes: CharacterAttributes): string {
-  const dominant = categories[0] || "Wanderer";
-  const secondary = categories[1] || "Seeker";
+  const dominant = categories[0] || "放浪者";
+  const secondary = categories[1] || "探求者";
   
   const descriptions: Record<string, string> = {
-    "Warrior": "A fierce combatant who faces challenges head-on with unwavering courage.",
-    "Mystic": "A being of mystical power who walks between worlds of reality and dreams.",
-    "Guardian": "A steadfast protector who maintains balance and shields the innocent.",
-    "Healer": "A compassionate soul who mends wounds and brings hope to the suffering.",
-    "Scholar": "A seeker of knowledge who unravels the mysteries of existence.",
-    "Destroyer": "A force of overwhelming power that reshapes the world through strength.",
-    "Sage": "An enlightened being who possesses ancient wisdom and deep understanding.",
-    "Legend": "A mythic figure whose deeds echo through the ages."
+    "戦士": "困難に立ち向かう不屈の勇気を持つ激しい戦闘者です。",
+    "狂戦士": "圧倒的な戦闘力で敵を粉砕する狂乱の戦士です。",
+    "勇者": "正義を胸に邪悪と戦う伝説的な英雄です。",
+    "神秘家": "現実と夢の世界を歩く神秘的な力を持つ存在です。",
+    "神託者": "未来を予見し神の意志を伝える預言者です。",
+    "予見者": "運命の糸を読み解く洞察力を持つ者です。",
+    "守護者": "均衡を保ち無垢な者を守る不動の守護者です。",
+    "保護者": "大切なものを護り続ける献身的な存在です。",
+    "歩哨": "永遠に見張り続ける忠実な番人です。",
+    "治癒者": "傷を癒し苦しむ者に希望をもたらす慈愛の魂です。",
+    "生命修復者": "生命力を操り傷を完全に治す癒し手です。",
+    "回復": "失われたものを元に戻す再生の力を持つ者です。",
+    "学者": "存在の謎を解き明かす知識の探求者です。",
+    "研究者": "真理を追い求める学問の道を歩む者です。",
+    "学問者": "深い知識と理解力を持つ賢人です。",
+    "破壊者": "力によって世界を再構築する圧倒的な力の存在です。",
+    "征服者": "すべてを支配下に置く絶対的な支配者です。",
+    "殲滅者": "障害となるものすべてを消し去る破滅の化身です。",
+    "賢者": "古代の知恵と深い理解を持つ悟りを開いた存在です。",
+    "伝説": "その業績が時代を超えて語り継がれる神話的な人物です。"
   };
 
-  const baseDesc = descriptions[dominant] || descriptions[secondary] || "A unique being of great potential.";
+  const baseDesc = descriptions[dominant] || descriptions[secondary] || "大いなる可能性を秘めた唯一無二の存在です。";
   
   const highestStat = Object.entries(attributes).reduce((max, [key, value]) => 
     value > max.value ? { key, value } : max, { key: 'strength', value: 0 });
 
   const statDescriptions: Record<string, string> = {
-    strength: "Your physical prowess and determination set you apart from others.",
-    wisdom: "Your insight and understanding illuminate the path forward.",
-    agility: "Your swift reflexes and adaptability serve you well in any situation.", 
-    mysticism: "Your connection to mystical forces grants you extraordinary abilities."
+    strength: "あなたの身体的な力と意志の強さが他者を圧倒します。",
+    wisdom: "あなたの洞察力と理解力が進むべき道を照らします。",
+    agility: "あなたの俊敏な反射神経と適応力がどんな状況でも力を発揮します。", 
+    mysticism: "あなたの神秘的な力との結びつきが並外れた能力をもたらします。"
   };
 
-  return `${baseDesc} ${statDescriptions[highestStat.key]} You embody the essence of both ${dominant} and ${secondary}, creating a unique harmony of traits that defines your legendary path.`;
+  return `${baseDesc} ${statDescriptions[highestStat.key]} あなたは${dominant}と${secondary}の本質を体現し、伝説的な道を定義する独特な特質の調和を創り出しています。`;
 }
