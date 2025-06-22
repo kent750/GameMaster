@@ -88,29 +88,29 @@ const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
 
 // Race modifiers
 const raceModifiers: Record<string, Partial<CharacterAttributes>> = {
-  // 人間族
-  'HUM': { strategy: 20, cunning: 15, leadership: 10, cooperation: -5, influence: 5 },
-  'NOB': { strategy: 25, cunning: 10, leadership: -5, cooperation: -8, influence: 0 },
-  'BAR': { leadership: 25, strategy: 15, courage: 10, influence: 18, cooperation: 5 },
-  'OUT': { influence: 20, strategy: 15, courage: 10, cunning: 8, leadership: 12 },
-  
-  // 妖精族
-  'ELF': { cooperation: 20, strategy: 15, influence: 10, cunning: -5, leadership: 5 },
-  'DEL': { cooperation: 18, influence: 12, strategy: 8, cunning: -8, courage: 0 },
-  'FAE': { leadership: 20, cooperation: 18, influence: 25, strategy: 8, courage: 5 },
-  'SYL': { influence: 22, cooperation: 15, courage: 12, leadership: 10, strategy: 8 },
-  
-  // 獣人族
-  'BEA': { cooperation: 20, strategy: 15, leadership: 10, influence: -8, cunning: -5 },
-  'CAT': { cooperation: 25, leadership: 8, strategy: 10, influence: 12, courage: 5 },
-  'WOL': { leadership: 25, cooperation: 15, courage: 12, influence: 15, strategy: 10 },
-  'LIZ': { cooperation: 22, influence: 20, leadership: 12, strategy: 5, courage: 8 },
-  
-  // 闇の眷属
-  'DEM': { courage: 20, cunning: 15, strategy: 10, cooperation: -8, influence: -5 },
-  'UND': { cooperation: 15, influence: 12, courage: 10, cunning: 5, strategy: 5 },
-  'VAM': { courage: 20, influence: 18, leadership: 15, cunning: 8, strategy: -5 },
-  'GOB': { influence: 25, cooperation: 15, courage: 12, leadership: 10, cunning: 0 }
+  // 外交官
+  'INFP': { strategy: 20, cunning: 15, leadership: 10, cooperation: -5, influence: 5 },
+  'ENFP': { strategy: 25, cunning: 10, leadership: -5, cooperation: -8, influence: 0 },
+  'INTP': { leadership: 25, strategy: 15, courage: 10, influence: 18, cooperation: 5 },
+  'ISFJ': { influence: 20, strategy: 15, courage: 10, cunning: 8, leadership: 12 },
+
+  // 分析家
+  'INFJ': { cooperation: 20, strategy: 15, influence: 10, cunning: -5, leadership: 5 },
+  'ESFJ': { cooperation: 18, influence: 12, strategy: 8, cunning: -8, courage: 0 },
+  'ISFP': { leadership: 20, cooperation: 18, influence: 25, strategy: 8, courage: 5 },
+  'ESFP': { influence: 22, cooperation: 15, courage: 12, leadership: 10, strategy: 8 },
+
+  // 探検家
+  'ENFJ': { cooperation: 20, strategy: 15, leadership: 10, influence: -8, cunning: -5 },
+  'ENTP': { cooperation: 25, leadership: 8, strategy: 10, influence: 12, courage: 5 },
+  'INTJ': { leadership: 25, cooperation: 15, courage: 12, influence: 15, strategy: 10 },
+  'ISTJ': { cooperation: 22, influence: 20, leadership: 12, strategy: 5, courage: 8 },
+
+  // 番人
+  'ESTJ': { courage: 20, cunning: 15, strategy: 10, cooperation: -8, influence: -5 },
+  'ISTP': { cooperation: 15, influence: 12, courage: 10, cunning: 5, strategy: 5 },
+  'ESTP': { courage: 20, influence: 18, leadership: 15, cunning: 8, strategy: -5 },
+  'ENTJ': { influence: 25, cooperation: 15, courage: 12, leadership: 10, cunning: 0 }
 };
 
 function getRaceModifiers(race: string): CharacterAttributes {

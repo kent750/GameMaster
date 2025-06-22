@@ -4,7 +4,7 @@ import { queryClient } from "@/lib/queryClient";
 import { apiRequest } from "@/lib/queryClient";
 import QuestionStage from "@/components/question-stage";
 import CharacterResults from "@/components/character-results";
-import RaceSelect from "@/components/race-select";
+import TypeSelect from "@/components/type-select";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, Crown } from "lucide-react";
 import type { Question, QuizSession, CharacterResult } from "@shared/schema";
@@ -15,12 +15,12 @@ export default function CharacterCreation() {
   const [selectedChoices, setSelectedChoices] = useState<number[]>([]);
   const [isComplete, setIsComplete] = useState(false);
   const [currentChoice, setCurrentChoice] = useState<number | null>(null);
-  const [showRaceSelect, setShowRaceSelect] = useState(true);
-  const [race, setRace] = useState<string | null>(null);
+  const [showTypeSelect, setShowTypeSelect] = useState(true);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
 
   // Start a new quiz session
   const startSessionMutation = useMutation({
-    mutationFn: (race?: string) => apiRequest("POST", "/api/quiz/start", { mbtiType: race }),
+    mutationFn: (type?: string) => apiRequest("POST", "/api/quiz/start", { mbtiType: type }),
     onSuccess: async (response) => {
       const session: QuizSession = await response.json();
       setSessionId(session.id);
@@ -64,10 +64,10 @@ export default function CharacterCreation() {
 
   // Initialize session on mount
   useEffect(() => {
-    if (!sessionId && !showRaceSelect) {
-      startSessionMutation.mutate(race || undefined);
+    if (!sessionId && !showTypeSelect) {
+      startSessionMutation.mutate(selectedType || undefined);
     }
-  }, [showRaceSelect, race]);
+  }, [showTypeSelect, selectedType]);
 
   const handleChoiceSelect = (choiceId: number) => {
     setCurrentChoice(choiceId);
@@ -102,17 +102,17 @@ export default function CharacterCreation() {
     setSelectedChoices([]);
     setIsComplete(false);
     setCurrentChoice(null);
-    setShowRaceSelect(true);
-    setRace(null);
+    setShowTypeSelect(true);
+    setSelectedType(null);
   };
 
-  const handleRaceComplete = (type: string) => {
-    setRace(type);
-    setShowRaceSelect(false);
+  const handleTypeComplete = (type: string) => {
+    setSelectedType(type);
+    setShowTypeSelect(false);
   };
 
-  if (showRaceSelect) {
-    return <RaceSelect onComplete={handleRaceComplete} />;
+  if (showTypeSelect) {
+    return <TypeSelect onComplete={handleTypeComplete} />;
   }
 
   if (isComplete && characterResult) {
