@@ -71,22 +71,23 @@ export default function CharacterCreation() {
 
   const handleChoiceSelect = (choiceId: number) => {
     setCurrentChoice(choiceId);
-  };
+    
+    // Auto-advance to next stage after selection
+    if (sessionId) {
+      updateSessionMutation.mutate({
+        sessionId,
+        choiceId,
+        stage: currentStage
+      });
 
-  const handleContinue = () => {
-    if (!currentChoice || !sessionId) return;
-
-    updateSessionMutation.mutate({
-      sessionId,
-      choiceId: currentChoice,
-      stage: currentStage
-    });
-
-    if (currentStage < 5) {
-      setCurrentStage(currentStage + 1);
-      setCurrentChoice(null);
+      if (currentStage < 5) {
+        setCurrentStage(currentStage + 1);
+        setCurrentChoice(null);
+      }
     }
   };
+
+
 
   const handlePrevious = () => {
     if (currentStage > 1) {
@@ -177,6 +178,10 @@ export default function CharacterCreation() {
             前へ
           </Button>
           
+          <div className="text-slate-400 text-sm">
+            {updateSessionMutation.isPending ? "処理中..." : "選択肢をクリックして進行"}
+          </div>
+          
           <Button
             onClick={handleRestart}
             variant="outline"
@@ -184,14 +189,6 @@ export default function CharacterCreation() {
           >
             <RotateCcw className="mr-2" size={16} />
             やり直し
-          </Button>
-          
-          <Button
-            onClick={handleContinue}
-            disabled={!currentChoice || updateSessionMutation.isPending}
-            className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white"
-          >
-            {updateSessionMutation.isPending ? "処理中..." : "続ける"}
           </Button>
         </div>
       </div>

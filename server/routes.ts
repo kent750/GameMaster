@@ -9,7 +9,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/questions/:stage", async (req, res) => {
     try {
       const stage = parseInt(req.params.stage);
-      if (isNaN(stage) || stage < 1 || stage > 4) {
+      if (isNaN(stage) || stage < 1 || stage > 5) {
         return res.status(400).json({ message: "Invalid stage number" });
       }
       
