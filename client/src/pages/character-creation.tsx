@@ -124,7 +124,7 @@ export default function CharacterCreation() {
       <div className="max-w-4xl w-full">
         {/* Game Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-game-gold-bright to-game-gold bg-clip-text text-transparent mb-4 animate-float">
+          <h1 className="text-4xl md:text-6xl font-bold text-game-gold-bright mb-4 animate-float">
             <Crown className="inline-block mr-4 text-game-gold" size={48} />
             あなたの選択
           </h1>
