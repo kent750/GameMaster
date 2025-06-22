@@ -66,8 +66,8 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       <div className="max-w-4xl w-full">
         <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-game-gold to-game-gold-dim rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-              <Crown className="text-3xl text-slate-900" size={40} />
+            <div className="w-20 h-20 bg-gradient-to-br from-game-gold-bright to-game-gold rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
+              <Crown className="text-3xl text-white" size={40} />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-100">あなたのキャラクターが覚醒しました</h2>
             <div className="mb-4">
