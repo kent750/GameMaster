@@ -28,8 +28,10 @@
   --game-purple: hsl(262, 83%, 58%);
   --game-cyan: hsl(188, 95%, 44%);
   --game-amber: hsl(43, 96%, 56%);
-  --game-dark: hsl(222, 84%, 5%);
-  --game-surface: hsl(215, 28%, 17%);
+  --game-dark: hsl(0, 0%, 4%);
+  --game-surface: hsl(0, 0%, 8%);
+  --mist-overlay: rgba(255, 255, 255, 0.03);
+  --mist-light: rgba(255, 255, 255, 0.08);
 }
 
 .dark {
@@ -111,6 +113,34 @@
   
   .to-game-amber {
     --tw-gradient-to: var(--game-amber);
+  }
+
+  .mist-overlay {
+    background: radial-gradient(circle at 50% 50%, var(--mist-light) 0%, transparent 70%);
+  }
+
+  .mist-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, var(--mist-overlay) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, var(--mist-overlay) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, var(--mist-light) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .mist-bg {
+    position: relative;
+  }
+
+  .mist-bg > * {
+    position: relative;
+    z-index: 2;
   }
 }
 

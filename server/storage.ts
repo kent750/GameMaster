@@ -152,6 +152,37 @@ export class MemStorage implements IStorage {
             traits: ["guardian", "balanced", "eternal"]
           }
         ]
+      },
+      {
+        stage: 5,
+        title: "勝利の後、あなたの真の使命が明らかになります。どの道を選びますか？",
+        description: "運命があなたの最終的な役割を決定する...",
+        choices: [
+          {
+            id: 13,
+            title: "新たな冒険の旅に出る",
+            description: "未知なる世界への探求を続ける",
+            icon: "fas fa-rocket",
+            gradient: "from-cyan-500 to-blue-500",
+            traits: ["seeker", "transcendent", "ambitious"]
+          },
+          {
+            id: 14,
+            title: "平和な世界の守護者となる",
+            description: "安らぎと調和を守り抜く",
+            icon: "fas fa-shield-alt",
+            gradient: "from-green-600 to-emerald-600",
+            traits: ["protective", "stable", "nurturing"]
+          },
+          {
+            id: 15,
+            title: "知識と智慧を後世に伝える",
+            description: "賢者として人々を導く",
+            icon: "fas fa-book",
+            gradient: "from-indigo-500 to-purple-500",
+            traits: ["enlightened", "wise", "eternal"]
+          }
+        ]
       }
     ];
 
@@ -170,7 +201,12 @@ export class MemStorage implements IStorage {
 
   async createQuizSession(session: InsertQuizSession): Promise<QuizSession> {
     const id = this.currentSessionId++;
-    const newSession: QuizSession = { id, ...session };
+    const newSession: QuizSession = { 
+      id, 
+      choices: [] as number[],
+      completed: 0,
+      mbtiType: session.mbtiType ?? undefined 
+    };
     this.quizSessions.set(id, newSession);
     return newSession;
   }
@@ -197,7 +233,15 @@ export class MemStorage implements IStorage {
 
   async createCharacterResult(result: InsertCharacterResult): Promise<CharacterResult> {
     const id = this.currentResultId++;
-    const newResult: CharacterResult = { id, ...result };
+    const newResult: CharacterResult = { 
+      id, 
+      sessionId: result.sessionId,
+      categories: result.categories as string[],
+      attributes: result.attributes,
+      description: result.description,
+      characterNumber: result.characterNumber,
+      statusTitle: result.statusTitle
+    };
     this.characterResults.set(id, newResult);
     return newResult;
   }

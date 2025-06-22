@@ -82,7 +82,7 @@ export default function CharacterCreation() {
       stage: currentStage
     });
 
-    if (currentStage < 4) {
+    if (currentStage < 5) {
       setCurrentStage(currentStage + 1);
       setCurrentChoice(null);
     }
@@ -119,20 +119,20 @@ export default function CharacterCreation() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: 'var(--game-dark)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 mist-bg" style={{ backgroundColor: 'var(--game-dark)' }}>
       <div className="max-w-4xl w-full">
         {/* Game Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4 animate-float">
             <Crown className="inline-block mr-4 text-purple-400" size={48} />
-            キャラクター創世記
+            あなたの選択
           </h1>
           <p className="text-slate-300 text-lg mb-8">神秘的な選択であなたの真の性格を発見してください</p>
           
           {/* Progress Indicator */}
           <div className="flex justify-center items-center space-x-4 mb-8">
             <div className="flex space-x-2">
-              {[1, 2, 3, 4].map((stage) => (
+              {[1, 2, 3, 4, 5].map((stage) => (
                 <div
                   key={stage}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
@@ -143,7 +143,7 @@ export default function CharacterCreation() {
                 />
               ))}
             </div>
-            <span className="text-slate-400 text-sm">ステージ {currentStage} / 4</span>
+            <span className="text-slate-400 text-sm">ステージ {currentStage} / 5</span>
           </div>
         </div>
 

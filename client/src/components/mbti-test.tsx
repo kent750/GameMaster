@@ -157,7 +157,7 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: 'var(--game-dark)' }}>
+    <div className="min-h-screen flex items-center justify-center p-4 mist-bg" style={{ backgroundColor: 'var(--game-dark)' }}>
       <div className="max-w-6xl w-full">
         <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
           <div className="text-center mb-8">

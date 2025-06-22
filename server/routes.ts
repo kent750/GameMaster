@@ -53,7 +53,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const updatedChoices = [...session.choices, choiceId];
-      const completed = stage >= 4 ? 1 : 0;
+      const completed = stage >= 5 ? 1 : 0;
       
       const updatedSession = await storage.updateQuizSession(
         sessionId,
