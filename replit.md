@@ -98,3 +98,4 @@ Interface language: Japanese
 Changelog:
 - June 20, 2025. Initial setup
 - June 21, 2025. Updated interface to Japanese language - all text in UI now displays in Japanese including questions, choices, buttons, and result descriptions
+- June 21, 2025. Simplified MBTI selection to direct choice from 16 personality types instead of quiz format - users now select from categorized grid of all 16 types with descriptions
