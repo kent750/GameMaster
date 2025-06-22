@@ -124,8 +124,8 @@ export default function CharacterCreation() {
       <div className="max-w-4xl w-full">
         {/* Game Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4 animate-float">
-            <Crown className="inline-block mr-4 text-purple-400" size={48} />
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-game-gold-bright to-game-gold bg-clip-text text-transparent mb-4 animate-float">
+            <Crown className="inline-block mr-4 text-game-gold" size={48} />
             あなたの選択
           </h1>
           <p className="text-slate-300 text-lg mb-8">神秘的な選択であなたの真の性格を発見してください</p>
@@ -138,7 +138,7 @@ export default function CharacterCreation() {
                   key={stage}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     stage <= currentStage 
-                      ? 'bg-purple-500 animate-glow' 
+                      ? 'bg-game-gold animate-glow' 
                       : 'bg-slate-600'
                   }`}
                 />
@@ -152,8 +152,8 @@ export default function CharacterCreation() {
         {questionsLoading ? (
           <div className="bg-slate-800 rounded-2xl p-8 mb-8 border border-slate-700 shadow-2xl">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-                <Crown size={32} />
+              <div className="w-16 h-16 bg-gradient-to-br from-game-gold to-game-gold-dim rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                <Crown size={32} className="text-slate-900" />
               </div>
               <div className="h-8 bg-slate-700 rounded mb-4 animate-pulse"></div>
               <div className="h-4 bg-slate-700 rounded w-2/3 mx-auto animate-pulse"></div>

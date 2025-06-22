@@ -66,13 +66,13 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       <div className="max-w-4xl w-full">
         <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-              <Crown className="text-3xl text-white" size={40} />
+            <div className="w-20 h-20 bg-gradient-to-br from-game-gold to-game-gold-dim rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
+              <Crown className="text-3xl text-slate-900" size={40} />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-100">あなたのキャラクターが覚醒しました</h2>
             <div className="mb-4">
-              <div className="text-2xl font-bold text-purple-400 mb-2">No.{result.characterNumber}</div>
-              <div className="text-xl text-cyan-400">{result.statusTitle}</div>
+              <div className="text-2xl font-bold text-game-gold mb-2">No.{result.characterNumber}</div>
+              <div className="text-xl text-game-gold-dim">{result.statusTitle}</div>
             </div>
             <p className="text-slate-300">あなたの選択が運命を築きました...</p>
           </div>
@@ -81,7 +81,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-slate-700 rounded-xl p-6 border border-slate-600">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-slate-100">
-                <UserCircle className="mr-3 text-purple-400" size={24} />
+                <UserCircle className="mr-3 text-game-gold" size={24} />
                 キャラクター原型
               </h3>
               <div className="space-y-3">
@@ -90,8 +90,8 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
                     key={category}
                     className={`bg-gradient-to-r ${
                       index === 0 
-                        ? 'from-purple-500/20 to-cyan-500/20 border-purple-500/30' 
-                        : 'from-cyan-500/20 to-amber-500/20 border-cyan-500/30'
+                        ? 'from-game-gold/20 to-game-gold-dim/20 border-game-gold/30' 
+                        : 'from-game-gold-dim/20 to-game-gold-bright/20 border-game-gold-dim/30'
                     } rounded-lg p-3 border`}
                   >
                     <span className="font-medium text-slate-100">{category}</span>
@@ -102,7 +102,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
 
             <div className="bg-slate-700 rounded-xl p-6 border border-slate-600">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-slate-100">
-                <Scroll className="mr-3 text-cyan-400" size={24} />
+                <Scroll className="mr-3 text-game-gold" size={24} />
                 キャラクターの本質
               </h3>
               <p className="text-slate-300 leading-relaxed">
@@ -114,7 +114,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           {/* Status Attributes */}
           <div className="bg-slate-700 rounded-xl p-6 border border-slate-600 mb-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center text-slate-100">
-              <BarChart3 className="mr-3 text-amber-400" size={24} />
+              <BarChart3 className="mr-3 text-game-gold" size={24} />
               評価
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

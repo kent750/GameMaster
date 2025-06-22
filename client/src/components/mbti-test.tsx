@@ -141,6 +141,10 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
 
   const handleSelect = (typeCode: string) => {
     setSelectedType(typeCode);
+    // Auto-advance after selection
+    setTimeout(() => {
+      onComplete(typeCode);
+    }, 500);
   };
 
   const handleComplete = () => {
@@ -161,8 +165,8 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
       <div className="max-w-6xl w-full">
         <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-              <Brain size={32} className="text-white" />
+            <div className="w-16 h-16 bg-gradient-to-br from-game-gold to-game-gold-dim rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
+              <Brain size={32} className="text-slate-900" />
             </div>
             <h2 className="text-3xl font-bold mb-4 text-slate-100">
               16パーソナリティタイプ選択
@@ -184,8 +188,8 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
                     onClick={() => handleSelect(type.code)}
                     className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
                       selectedType === type.code
-                        ? 'border-purple-500 bg-gradient-to-br from-purple-500/20 to-cyan-500/10 transform scale-105'
-                        : 'border-slate-600 hover:border-purple-400 bg-slate-700 hover:transform hover:scale-102'
+                        ? 'border-game-gold bg-gradient-to-br from-game-gold/20 to-game-gold-dim/10 transform scale-105'
+                        : 'border-slate-600 hover:border-game-gold-dim bg-slate-700 hover:transform hover:scale-102'
                     }`}
                   >
                     <div className="flex items-start">
@@ -196,7 +200,7 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
                         <div className="font-semibold text-slate-100 mb-1">
                           {type.code}
                         </div>
-                        <div className="text-sm font-medium text-purple-300 mb-2">
+                        <div className="text-sm font-medium text-game-gold mb-2">
                           {type.name}
                         </div>
                         <div className="text-xs text-slate-400 leading-relaxed">
@@ -210,14 +214,10 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
             </div>
           ))}
 
-          <div className="flex justify-center mt-8">
-            <Button
-              onClick={handleComplete}
-              disabled={!selectedType}
-              className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white px-8 py-3 text-lg"
-            >
-              選択完了
-            </Button>
+          <div className="text-center mt-8">
+            <p className="text-slate-400 text-sm">
+              {selectedType ? "選択済み - 自動的に進行します..." : "タイプを選択してください"}
+            </p>
           </div>
         </div>
       </div>
