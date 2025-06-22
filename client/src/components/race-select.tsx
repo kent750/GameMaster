@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Brain, User } from "lucide-react";
 
-interface PersonalityType {
+interface RaceType {
   code: string;
   name: string;
   description: string;
@@ -10,133 +10,133 @@ interface PersonalityType {
   color: string;
 }
 
-interface MBTITestProps {
-  onComplete: (mbtiType: string) => void;
+interface RaceSelectProps {
+  onComplete: (race: string) => void;
 }
 
-const personalityTypes: PersonalityType[] = [
-  // 分析家タイプ (NT)
+const races: RaceType[] = [
+  // 人間族
   {
-    code: "INTJ",
-    name: "建築家",
-    description: "想像力が豊かで、戦略的な思考の持ち主。あらゆることに計画を立てる。",
-    category: "分析家",
+    code: "HUM",
+    name: "ヒューマン",
+    description: "最も一般的な種族。柔軟でどのような環境にも適応する。",
+    category: "人間族",
     color: "from-purple-600 to-indigo-600"
   },
   {
-    code: "INTP", 
-    name: "論理学者",
-    description: "貪欲な知識欲を持つ革新的な発明家。",
-    category: "分析家",
+    code: "NOB",
+    name: "ノーブル",
+    description: "高貴な血筋を持つ人間。礼節と誇りを重んじる。",
+    category: "人間族",
     color: "from-purple-600 to-indigo-600"
   },
   {
-    code: "ENTJ",
-    name: "指揮官", 
-    description: "大胆で想像力豊か、かつ強い意志を持つ指導者。常に道を見つけるか、道を切り開く。",
-    category: "分析家",
+    code: "BAR",
+    name: "バーバリアン",
+    description: "荒々しい戦士の民。強靭な肉体と野性を誇る。",
+    category: "人間族",
     color: "from-purple-600 to-indigo-600"
   },
   {
-    code: "ENTP",
-    name: "討論者",
-    description: "賢くて好奇心旺盛な思想家。知的挑戦には必ず受けて立つ。",
-    category: "分析家", 
+    code: "OUT",
+    name: "アウトロー",
+    description: "掟に縛られない自由な放浪者。",
+    category: "人間族",
     color: "from-purple-600 to-indigo-600"
   },
-  
-  // 外交官タイプ (NF)
+
+  // 妖精族
   {
-    code: "INFJ",
-    name: "提唱者",
-    description: "静かで神秘的だが、人々を非常に勇気づける飽くなき理想主義者。",
-    category: "外交官",
+    code: "ELF",
+    name: "エルフ",
+    description: "長寿で自然と調和する優雅な種族。",
+    category: "妖精族",
     color: "from-green-600 to-emerald-600"
   },
   {
-    code: "INFP",
-    name: "仲介者",
-    description: "詩人肌で親切な利他主義者。常により良い世界のため尽力している。",
-    category: "外交官",
+    code: "DEL",
+    name: "ダークエルフ",
+    description: "闇の森に棲む神秘的なエルフ。影の力を操る。",
+    category: "妖精族",
     color: "from-green-600 to-emerald-600"
   },
   {
-    code: "ENFJ",
-    name: "主人公",
-    description: "カリスマ性があり、人々を励ますリーダー。聞く人を魅了する。",
-    category: "外交官",
+    code: "FAE",
+    name: "フェアリー",
+    description: "小柄で魔法に長けた気まぐれな精霊。",
+    category: "妖精族",
     color: "from-green-600 to-emerald-600"
   },
   {
-    code: "ENFP",
-    name: "運動家",
-    description: "情熱的で独創性があり、かつ社交的な自由人。常に笑いどころや楽しめることを見つけられる。",
-    category: "外交官",
+    code: "SYL",
+    name: "シルフ",
+    description: "風と共に舞う軽やかな精霊。",
+    category: "妖精族",
     color: "from-green-600 to-emerald-600"
   },
-  
-  // 番人タイプ (SJ)
+
+  // 獣人族
   {
-    code: "ISTJ",
-    name: "管理者",
-    description: "実用的で事実に基づいた思考の持ち主。その信頼性は他の追随を許さない。",
-    category: "番人",
+    code: "BEA",
+    name: "獣人",
+    description: "獣の特徴を持つ逞しい戦士達。",
+    category: "獣人族",
     color: "from-blue-600 to-cyan-600"
   },
   {
-    code: "ISFJ",
-    name: "擁護者",
-    description: "非常に献身的で心の温かい擁護者。いつでも大切な人を守る準備ができている。",
-    category: "番人",
+    code: "CAT",
+    name: "キャットフォーク",
+    description: "俊敏で好奇心旺盛な猫の民。",
+    category: "獣人族",
     color: "from-blue-600 to-cyan-600"
   },
   {
-    code: "ESTJ",
-    name: "幹部",
-    description: "優秀な管理者。物事や人々を管理する能力にかけては右に出る者はいない。",
-    category: "番人",
+    code: "WOL",
+    name: "ウルフキン",
+    description: "群れを成して狩りを行う狼の種族。",
+    category: "獣人族",
     color: "from-blue-600 to-cyan-600"
   },
   {
-    code: "ESFJ",
-    name: "領事",
-    description: "非常に思いやりがあり社交的で、人気者。常に熱心に人助けをしている。",
-    category: "番人",
+    code: "LIZ",
+    name: "リザードマン",
+    description: "鱗に覆われた冷静な戦士達。",
+    category: "獣人族",
     color: "from-blue-600 to-cyan-600"
   },
-  
-  // 探検家タイプ (SP)
+
+  // 闇の眷属
   {
-    code: "ISTP",
-    name: "巨匠",
-    description: "大胆で実用的な思考を持つ実験者。あらゆる道具を使いこなす。",
-    category: "探検家",
+    code: "DEM",
+    name: "デーモン",
+    description: "邪悪な力と契約を結んだ存在。",
+    category: "闇の眷属",
     color: "from-orange-600 to-red-600"
   },
   {
-    code: "ISFP",
-    name: "冒険家",
-    description: "柔軟性があり魅力的な芸術家。常に新しい可能性を模索している。",
-    category: "探検家",
+    code: "UND",
+    name: "アンデッド",
+    description: "死を越えて蘇った魂なき者。",
+    category: "闇の眷属",
     color: "from-orange-600 to-red-600"
   },
   {
-    code: "ESTP",
-    name: "起業家",
-    description: "賢くてエネルギッシュで、知覚に優れた人。極限状況でも楽しむ。",
-    category: "探検家",
+    code: "VAM",
+    name: "ヴァンパイア",
+    description: "血を糧とする夜の支配者。",
+    category: "闇の眷属",
     color: "from-orange-600 to-red-600"
   },
   {
-    code: "ESFP",
-    name: "エンターテイナー",
-    description: "自発性があり、エネルギッシュで熱心なエンターテイナー。一緒にいる人を決して退屈させない。",
-    category: "探検家",
+    code: "GOB",
+    name: "ゴブリン",
+    description: "狡猾で素早い小柄な種族。",
+    category: "闇の眷属",
     color: "from-orange-600 to-red-600"
   }
 ];
 
-export default function MBTITest({ onComplete }: MBTITestProps) {
+export default function RaceSelect({ onComplete }: RaceSelectProps) {
   const [selectedType, setSelectedType] = useState<string | null>(null);
 
   const handleSelect = (typeCode: string) => {
@@ -154,10 +154,10 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
   };
 
   const groupedTypes = {
-    "分析家": personalityTypes.filter(t => t.category === "分析家"),
-    "外交官": personalityTypes.filter(t => t.category === "外交官"), 
-    "番人": personalityTypes.filter(t => t.category === "番人"),
-    "探検家": personalityTypes.filter(t => t.category === "探検家")
+    "人間族": races.filter(t => t.category === "人間族"),
+    "妖精族": races.filter(t => t.category === "妖精族"),
+    "獣人族": races.filter(t => t.category === "獣人族"),
+    "闇の眷属": races.filter(t => t.category === "闇の眷属")
   };
 
   return (
@@ -169,10 +169,10 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
               <Brain size={32} className="text-slate-900" />
             </div>
             <h2 className="text-3xl font-bold mb-4 text-slate-100">
-              16パーソナリティタイプ選択
+              種族を選択
             </h2>
             <p className="text-slate-300 mb-8">
-              あなたの性格に最も近いタイプを選択してください
+              あなたの種族を選択してください
             </p>
           </div>
 
@@ -216,7 +216,7 @@ export default function MBTITest({ onComplete }: MBTITestProps) {
 
           <div className="text-center mt-8">
             <p className="text-slate-400 text-sm">
-              {selectedType ? "選択済み - 自動的に進行します..." : "タイプを選択してください"}
+              {selectedType ? "選択済み - 自動的に進行します..." : "種族を選択してください"}
             </p>
           </div>
         </div>

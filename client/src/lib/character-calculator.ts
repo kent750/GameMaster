@@ -86,35 +86,35 @@ const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
   eternal: { influence: 18, strategy: 15, cooperation: 12 }
 };
 
-// MBTI type modifiers
-const mbtiModifiers: Record<string, Partial<CharacterAttributes>> = {
-  // Analysts (NT)
-  'INTJ': { strategy: 20, cunning: 15, leadership: 10, cooperation: -5, influence: 5 },
-  'INTP': { strategy: 25, cunning: 10, leadership: -5, cooperation: -8, influence: 0 },
-  'ENTJ': { leadership: 25, strategy: 15, courage: 10, influence: 18, cooperation: 5 },
-  'ENTP': { influence: 20, strategy: 15, courage: 10, cunning: 8, leadership: 12 },
+// Race modifiers
+const raceModifiers: Record<string, Partial<CharacterAttributes>> = {
+  // 人間族
+  'HUM': { strategy: 20, cunning: 15, leadership: 10, cooperation: -5, influence: 5 },
+  'NOB': { strategy: 25, cunning: 10, leadership: -5, cooperation: -8, influence: 0 },
+  'BAR': { leadership: 25, strategy: 15, courage: 10, influence: 18, cooperation: 5 },
+  'OUT': { influence: 20, strategy: 15, courage: 10, cunning: 8, leadership: 12 },
   
-  // Diplomats (NF)
-  'INFJ': { cooperation: 20, strategy: 15, influence: 10, cunning: -5, leadership: 5 },
-  'INFP': { cooperation: 18, influence: 12, strategy: 8, cunning: -8, courage: 0 },
-  'ENFJ': { leadership: 20, cooperation: 18, influence: 25, strategy: 8, courage: 5 },
-  'ENFP': { influence: 22, cooperation: 15, courage: 12, leadership: 10, strategy: 8 },
+  // 妖精族
+  'ELF': { cooperation: 20, strategy: 15, influence: 10, cunning: -5, leadership: 5 },
+  'DEL': { cooperation: 18, influence: 12, strategy: 8, cunning: -8, courage: 0 },
+  'FAE': { leadership: 20, cooperation: 18, influence: 25, strategy: 8, courage: 5 },
+  'SYL': { influence: 22, cooperation: 15, courage: 12, leadership: 10, strategy: 8 },
   
-  // Sentinels (SJ)
-  'ISTJ': { cooperation: 20, strategy: 15, leadership: 10, influence: -8, cunning: -5 },
-  'ISFJ': { cooperation: 25, leadership: 8, strategy: 10, influence: 12, courage: 5 },
-  'ESTJ': { leadership: 25, cooperation: 15, courage: 12, influence: 15, strategy: 10 },
-  'ESFJ': { cooperation: 22, influence: 20, leadership: 12, strategy: 5, courage: 8 },
+  // 獣人族
+  'BEA': { cooperation: 20, strategy: 15, leadership: 10, influence: -8, cunning: -5 },
+  'CAT': { cooperation: 25, leadership: 8, strategy: 10, influence: 12, courage: 5 },
+  'WOL': { leadership: 25, cooperation: 15, courage: 12, influence: 15, strategy: 10 },
+  'LIZ': { cooperation: 22, influence: 20, leadership: 12, strategy: 5, courage: 8 },
   
-  // Explorers (SP)
-  'ISTP': { courage: 20, cunning: 15, strategy: 10, cooperation: -8, influence: -5 },
-  'ISFP': { cooperation: 15, influence: 12, courage: 10, cunning: 5, strategy: 5 },
-  'ESTP': { courage: 20, influence: 18, leadership: 15, cunning: 8, strategy: -5 },
-  'ESFP': { influence: 25, cooperation: 15, courage: 12, leadership: 10, cunning: 0 }
+  // 闇の眷属
+  'DEM': { courage: 20, cunning: 15, strategy: 10, cooperation: -8, influence: -5 },
+  'UND': { cooperation: 15, influence: 12, courage: 10, cunning: 5, strategy: 5 },
+  'VAM': { courage: 20, influence: 18, leadership: 15, cunning: 8, strategy: -5 },
+  'GOB': { influence: 25, cooperation: 15, courage: 12, leadership: 10, cunning: 0 }
 };
 
-function getMBTIModifiers(mbtiType: string): CharacterAttributes {
-  const modifiers = mbtiModifiers[mbtiType] || {};
+function getRaceModifiers(race: string): CharacterAttributes {
+  const modifiers = raceModifiers[race] || {};
   return {
     leadership: modifiers.leadership || 0,
     strategy: modifiers.strategy || 0,
@@ -157,7 +157,7 @@ const characterMapping: Record<string, { number: number; title: string }> = {
   "手を差し伸べる者": { number: 27, title: "手を差し伸べる者" }
 };
 
-export function calculateCharacter(choices: number[], mbtiType?: string): CharacterData {
+export function calculateCharacter(choices: number[], raceCode?: string): CharacterData {
   // Map choices to traits based on predefined choice-trait mappings
   const allTraits: string[] = [];
   
@@ -221,15 +221,15 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
     }
   });
 
-  // Apply MBTI modifiers if available
-  if (mbtiType) {
-    const mbtiModifiers = getMBTIModifiers(mbtiType);
-    baseAttributes.leadership += mbtiModifiers.leadership;
-    baseAttributes.strategy += mbtiModifiers.strategy;
-    baseAttributes.courage += mbtiModifiers.courage;
-    baseAttributes.cunning += mbtiModifiers.cunning;
-    baseAttributes.cooperation += mbtiModifiers.cooperation;
-    baseAttributes.influence += mbtiModifiers.influence;
+  // Apply race modifiers if available
+  if (raceCode) {
+    const raceMods = getRaceModifiers(raceCode);
+    baseAttributes.leadership += raceMods.leadership;
+    baseAttributes.strategy += raceMods.strategy;
+    baseAttributes.courage += raceMods.courage;
+    baseAttributes.cunning += raceMods.cunning;
+    baseAttributes.cooperation += raceMods.cooperation;
+    baseAttributes.influence += raceMods.influence;
   }
 
   // Normalize attributes to 0-100 range
