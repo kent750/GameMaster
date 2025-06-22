@@ -61,6 +61,14 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        game: {
+          gold: "var(--game-gold)",
+          "gold-dim": "var(--game-gold-dim)",
+          "gold-bright": "var(--game-gold-bright)",
+          dark: "var(--game-dark)",
+          surface: "var(--game-surface)",
+          "surface-light": "var(--game-surface-light)",
+        },
       },
       keyframes: {
         "accordion-down": {

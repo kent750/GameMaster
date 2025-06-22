@@ -16,37 +16,37 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       name: "主導",
       value: result.attributes.leadership,
       icon: <img src="/assets/leadership.png" alt="主導" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     },
     {
       name: "知略", 
       value: result.attributes.strategy,
       icon: <img src="/assets/intellect.png" alt="知略" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     },
     {
       name: "勇敢",
       value: result.attributes.courage,
       icon: <img src="/assets/bravery.png" alt="勇敢" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     },
     {
       name: "策謀",
       value: result.attributes.cunning,
       icon: <img src="/assets/manipulation.png" alt="策謀" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     },
     {
       name: "協力",
       value: result.attributes.cooperation,
       icon: <img src="/assets/cooperation.png" alt="協力" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     },
     {
       name: "影響",
       value: result.attributes.influence,
       icon: <img src="/assets/influence.png" alt="影響" className="w-8 h-8" />,
-      gradient: "from-game-gold to-game-gold-bright"
+      gradient: "from-yellow-600 to-yellow-500"
     }
   ];
 
@@ -74,11 +74,11 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 mb-4">
-              <Crown className="text-game-gold" size={32} />
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-game-gold to-game-gold-bright bg-clip-text text-transparent">
+              <Crown className="text-yellow-600" size={32} />
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
                 あなたのキャラクター
               </h1>
-              <Crown className="text-game-gold" size={32} />
+              <Crown className="text-yellow-600" size={32} />
             </div>
             <p className="text-slate-300 text-lg">運命が明かされました</p>
           </div>
@@ -87,7 +87,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-slate-700 rounded-xl p-6 border border-slate-600">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-slate-100">
-                <UserCircle className="mr-3 text-game-gold" size={24} />
+                <UserCircle className="mr-3 text-yellow-600" size={24} />
                 キャラクター原型
               </h3>
               <div className="space-y-3">
@@ -96,8 +96,8 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
                     key={category}
                     className={`bg-gradient-to-r ${
                       index === 0 
-                        ? 'from-game-gold/20 to-game-gold-dim/20 border-game-gold/30' 
-                        : 'from-game-gold-dim/20 to-game-gold-bright/20 border-game-gold-dim/30'
+                        ? 'from-yellow-600/20 to-yellow-700/20 border-yellow-600/30' 
+                        : 'from-yellow-700/20 to-yellow-500/20 border-yellow-700/30'
                     } rounded-lg p-3 border`}
                   >
                     <span className="font-medium text-slate-100">{category}</span>
@@ -108,7 +108,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
 
             <div className="bg-slate-700 rounded-xl p-6 border border-slate-600">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-slate-100">
-                <Scroll className="mr-3 text-game-gold" size={24} />
+                <Scroll className="mr-3 text-yellow-600" size={24} />
                 キャラクターの本質
               </h3>
               <p className="text-slate-300 leading-relaxed">
@@ -120,7 +120,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           {/* Status Attributes */}
           <div className="bg-slate-700 rounded-xl p-6 border border-slate-600 mb-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center text-slate-100">
-              <BarChart3 className="mr-3 text-game-gold" size={24} />
+              <BarChart3 className="mr-3 text-yellow-600" size={24} />
               評価
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -140,7 +140,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={handleShare}
-              className="bg-gradient-to-r from-game-gold to-game-gold-bright hover:from-game-gold-bright hover:to-game-gold text-slate-900 font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
               <Share className="mr-2" size={20} />
               結果を共有
@@ -148,7 +148,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
             <Button
               onClick={onRestart}
               variant="outline"
-              className="border-game-gold text-game-gold hover:bg-game-gold/10 px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+              className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
               <RotateCcw className="mr-2" size={20} />
               もう一度診断
