@@ -1,49 +1,77 @@
 import { Crown, UserCircle, Scroll, BarChart3, Share, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { CharacterResult } from "@shared/schema";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 
 interface CharacterResultsProps {
   result: CharacterResult;
   onRestart: () => void;
 }
 
+const traitIcons: Record<keyof Character, React.ReactNode> = {
+  influence: <img src="/assets/influence.png" alt="influence" className="w-12 h-12" />,
+  manipulation: (
+    <img src="/assets/manipulation.png" alt="manipulation" className="w-12 h-12" />
+  ),
+  cooperation: (
+    <img src="/assets/cooperation.png" alt="cooperation" className="w-12 h-12" />
+  ),
+  leadership: (
+    <img src="/assets/leadership.png" alt="leadership" className="w-12 h-12" />
+  ),
+  bravery: <img src="/assets/bravery.png" alt="bravery" className="w-12 h-12" />,
+  intellect: <img src="/assets/intellect.png" alt="intellect" className="w-12 h-12" />,
+};
+
+const traitNames: Record<keyof Character, string> = {
+  influence: "影響",
+  manipulation: "策謀",
+  cooperation: "協力",
+  leadership: "主導",
+  bravery: "勇敢",
+  intellect: "知略",
+};
+
 export default function CharacterResults({ result, onRestart }: CharacterResultsProps) {
   const attributes = [
     {
       name: "主導",
       value: result.attributes.leadership,
-      icon: "👑",
-      gradient: "from-amber-500 to-yellow-500"
+      icon: <img src="/assets/leadership.png" alt="主導" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     },
     {
       name: "知略", 
       value: result.attributes.strategy,
-      icon: "🧠",
-      gradient: "from-blue-500 to-purple-500"
+      icon: <img src="/assets/intellect.png" alt="知略" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     },
     {
       name: "勇敢",
       value: result.attributes.courage,
-      icon: "⚔️",
-      gradient: "from-red-500 to-orange-500"
+      icon: <img src="/assets/bravery.png" alt="勇敢" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     },
     {
       name: "策謀",
       value: result.attributes.cunning,
-      icon: "🎭",
-      gradient: "from-purple-500 to-indigo-500"
+      icon: <img src="/assets/manipulation.png" alt="策謀" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     },
     {
       name: "協力",
       value: result.attributes.cooperation,
-      icon: "🤝",
-      gradient: "from-green-500 to-emerald-500"
+      icon: <img src="/assets/cooperation.png" alt="協力" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     },
     {
       name: "影響",
       value: result.attributes.influence,
-      icon: "⭐",
-      gradient: "from-pink-500 to-rose-500"
+      icon: <img src="/assets/influence.png" alt="影響" className="w-8 h-8" />,
+      gradient: "from-game-gold to-game-gold-bright"
     }
   ];
 
@@ -121,7 +149,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
               {attributes.map((attr) => (
                 <div key={attr.name} className="text-center">
                   <div className={`w-16 h-16 bg-gradient-to-br ${attr.gradient} rounded-full flex items-center justify-center mx-auto mb-2`}>
-                    <span className="text-xl">{attr.icon}</span>
+                    {attr.icon}
                   </div>
                   <div className="font-semibold text-lg text-slate-100">{attr.value}</div>
                   <div className="text-slate-400 text-sm">{attr.name}</div>
