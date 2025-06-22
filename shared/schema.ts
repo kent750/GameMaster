@@ -14,6 +14,7 @@ export const quizSessions = pgTable("quiz_sessions", {
   id: serial("id").primaryKey(),
   choices: jsonb("choices").$type<number[]>().notNull(),
   completed: integer("completed").default(0),
+  mbtiType: text("mbti_type"),
 });
 
 export const characterResults = pgTable("character_results", {
@@ -22,6 +23,8 @@ export const characterResults = pgTable("character_results", {
   categories: jsonb("categories").$type<string[]>().notNull(),
   attributes: jsonb("attributes").$type<CharacterAttributes>().notNull(),
   description: text("description").notNull(),
+  characterNumber: integer("character_number").notNull(),
+  statusTitle: text("status_title").notNull(),
 });
 
 export interface Choice {
@@ -44,6 +47,7 @@ export interface QuizSession {
   id: number;
   choices: number[];
   completed: number;
+  mbtiType?: string;
 }
 
 export interface CharacterResult {
@@ -52,6 +56,8 @@ export interface CharacterResult {
   categories: string[];
   attributes: CharacterAttributes;
   description: string;
+  characterNumber: number;
+  statusTitle: string;
 }
 
 export const insertQuestionSchema = createInsertSchema(questions).omit({

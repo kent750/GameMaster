@@ -4,6 +4,8 @@ interface CharacterData {
   categories: string[];
   attributes: CharacterAttributes;
   description: string;
+  characterNumber: number;
+  statusTitle: string;
 }
 
 const traitMappings: Record<string, string[]> = {
@@ -84,7 +86,76 @@ const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
   eternal: { mysticism: 20, wisdom: 15 }
 };
 
-export function calculateCharacter(choices: number[]): CharacterData {
+// MBTI type modifiers
+const mbtiModifiers: Record<string, Partial<CharacterAttributes>> = {
+  // Analysts (NT)
+  'INTJ': { wisdom: 15, mysticism: 10, strength: -5 },
+  'INTP': { wisdom: 20, mysticism: 5, agility: -5 },
+  'ENTJ': { strength: 15, wisdom: 10, agility: 5 },
+  'ENTP': { agility: 15, wisdom: 10, strength: 5 },
+  
+  // Diplomats (NF)
+  'INFJ': { mysticism: 20, wisdom: 10, strength: -10 },
+  'INFP': { mysticism: 15, wisdom: 5, agility: 5 },
+  'ENFJ': { wisdom: 15, mysticism: 10, agility: 5 },
+  'ENFP': { agility: 10, mysticism: 10, strength: 5 },
+  
+  // Sentinels (SJ)
+  'ISTJ': { strength: 10, wisdom: 15, mysticism: -10 },
+  'ISFJ': { wisdom: 10, strength: 5, mysticism: 5 },
+  'ESTJ': { strength: 20, wisdom: 5, agility: 5 },
+  'ESFJ': { strength: 5, wisdom: 10, agility: 10 },
+  
+  // Explorers (SP)
+  'ISTP': { agility: 20, strength: 10, wisdom: -5 },
+  'ISFP': { agility: 10, mysticism: 10, strength: 5 },
+  'ESTP': { agility: 15, strength: 15, wisdom: -10 },
+  'ESFP': { agility: 10, strength: 5, mysticism: 5 }
+};
+
+function getMBTIModifiers(mbtiType: string): CharacterAttributes {
+  const modifiers = mbtiModifiers[mbtiType] || {};
+  return {
+    strength: modifiers.strength || 0,
+    wisdom: modifiers.wisdom || 0,
+    agility: modifiers.agility || 0,
+    mysticism: modifiers.mysticism || 0
+  };
+}
+
+// Character number and status title mapping
+const characterMapping: Record<string, { number: number; title: string }> = {
+  "戦士": { number: 1, title: "剣を振るう者" },
+  "狂戦士": { number: 2, title: "怒りを纏う者" },
+  "勇者": { number: 3, title: "希望を照らす者" },
+  "神秘家": { number: 4, title: "神秘を操る者" },
+  "神託者": { number: 5, title: "運命を告げる者" },
+  "予見者": { number: 6, title: "未来を見通す者" },
+  "守護者": { number: 7, title: "平和を守る者" },
+  "保護者": { number: 8, title: "弱者を庇う者" },
+  "歩哨": { number: 9, title: "境界を見張る者" },
+  "治癒者": { number: 10, title: "傷を癒す者" },
+  "生命修復者": { number: 11, title: "生命を蘇らせる者" },
+  "回復": { number: 12, title: "失われたものを取り戻す者" },
+  "学者": { number: 13, title: "知識を求める者" },
+  "研究者": { number: 14, title: "真理を探究する者" },
+  "学問者": { number: 15, title: "叡智を極める者" },
+  "破壊者": { number: 16, title: "破滅をもたらす者" },
+  "征服者": { number: 17, title: "世界を支配する者" },
+  "殲滅者": { number: 18, title: "すべてを消し去る者" },
+  "賢者": { number: 19, title: "古の知恵を持つ者" },
+  "伝説": { number: 20, title: "語り継がれる者" },
+  // Additional combinations
+  "炎歩者": { number: 21, title: "炎の道を歩む者" },
+  "影歩者": { number: 22, title: "影の中を行く者" },
+  "真理探求者": { number: 23, title: "真実を追い求める者" },
+  "盾持ち": { number: 24, title: "盾で守り抜く者" },
+  "天秤守": { number: 25, title: "均衡を保つ者" },
+  "育成者": { number: 26, title: "成長を導く者" },
+  "手を差し伸べる者": { number: 27, title: "手を差し伸べる者" }
+};
+
+export function calculateCharacter(choices: number[], mbtiType?: string): CharacterData {
   // Map choices to traits based on predefined choice-trait mappings
   const allTraits: string[] = [];
   
@@ -144,6 +215,15 @@ export function calculateCharacter(choices: number[]): CharacterData {
     }
   });
 
+  // Apply MBTI modifiers if available
+  if (mbtiType) {
+    const mbtiModifiers = getMBTIModifiers(mbtiType);
+    baseAttributes.strength += mbtiModifiers.strength;
+    baseAttributes.wisdom += mbtiModifiers.wisdom;
+    baseAttributes.agility += mbtiModifiers.agility;
+    baseAttributes.mysticism += mbtiModifiers.mysticism;
+  }
+
   // Normalize attributes to 0-100 range
   const maxAttribute = Math.max(
     baseAttributes.strength,
@@ -163,10 +243,16 @@ export function calculateCharacter(choices: number[]): CharacterData {
   // Generate description based on categories
   const description = generateDescription(categories, baseAttributes);
 
+  // Get character number and status title
+  const primaryCategory = categories[0] || "手を差し伸べる者";
+  const characterInfo = characterMapping[primaryCategory] || { number: 27, title: "手を差し伸べる者" };
+
   return {
     categories: categories.slice(0, 2), // Return top 2 categories
     attributes: baseAttributes,
-    description
+    description,
+    characterNumber: characterInfo.number,
+    statusTitle: characterInfo.title
   };
 }
 

@@ -58,6 +58,10 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
               <Crown className="text-3xl text-white" size={40} />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-100">あなたのキャラクターが覚醒しました</h2>
+            <div className="mb-4">
+              <div className="text-2xl font-bold text-purple-400 mb-2">No.{result.characterNumber}</div>
+              <div className="text-xl text-cyan-400">{result.statusTitle}</div>
+            </div>
             <p className="text-slate-300">あなたの選択が運命を築きました...</p>
           </div>
 

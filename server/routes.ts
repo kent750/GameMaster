@@ -23,9 +23,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create a new quiz session
   app.post("/api/quiz/start", async (req, res) => {
     try {
+      const { mbtiType } = req.body;
       const sessionData = insertQuizSessionSchema.parse({
         choices: [],
-        completed: 0
+        completed: 0,
+        mbtiType: mbtiType || null
       });
       
       const session = await storage.createQuizSession(sessionData);
@@ -102,13 +104,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Calculate character based on choices
-      const characterData = calculateCharacter(session.choices);
+      const characterData = calculateCharacter(session.choices, session.mbtiType || undefined);
       
       const resultData = insertCharacterResultSchema.parse({
         sessionId,
         categories: characterData.categories,
         attributes: characterData.attributes,
-        description: characterData.description
+        description: characterData.description,
+        characterNumber: characterData.characterNumber,
+        statusTitle: characterData.statusTitle
       });
       
       const result = await storage.createCharacterResult(resultData);

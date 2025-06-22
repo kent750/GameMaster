@@ -4,6 +4,7 @@ import { queryClient } from "@/lib/queryClient";
 import { apiRequest } from "@/lib/queryClient";
 import QuestionStage from "@/components/question-stage";
 import CharacterResults from "@/components/character-results";
+import MBTITest from "@/components/mbti-test";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, Crown } from "lucide-react";
 import type { Question, QuizSession, CharacterResult } from "@shared/schema";
@@ -14,10 +15,12 @@ export default function CharacterCreation() {
   const [selectedChoices, setSelectedChoices] = useState<number[]>([]);
   const [isComplete, setIsComplete] = useState(false);
   const [currentChoice, setCurrentChoice] = useState<number | null>(null);
+  const [showMBTI, setShowMBTI] = useState(true);
+  const [mbtiType, setMbtiType] = useState<string | null>(null);
 
   // Start a new quiz session
   const startSessionMutation = useMutation({
-    mutationFn: () => apiRequest("POST", "/api/quiz/start"),
+    mutationFn: (mbtiType?: string) => apiRequest("POST", "/api/quiz/start", { mbtiType }),
     onSuccess: async (response) => {
       const session: QuizSession = await response.json();
       setSessionId(session.id);
@@ -61,10 +64,10 @@ export default function CharacterCreation() {
 
   // Initialize session on mount
   useEffect(() => {
-    if (!sessionId) {
-      startSessionMutation.mutate();
+    if (!sessionId && !showMBTI) {
+      startSessionMutation.mutate(mbtiType || undefined);
     }
-  }, []);
+  }, [showMBTI, mbtiType]);
 
   const handleChoiceSelect = (choiceId: number) => {
     setCurrentChoice(choiceId);
@@ -98,8 +101,18 @@ export default function CharacterCreation() {
     setSelectedChoices([]);
     setIsComplete(false);
     setCurrentChoice(null);
-    startSessionMutation.mutate();
+    setShowMBTI(true);
+    setMbtiType(null);
   };
+
+  const handleMBTIComplete = (type: string) => {
+    setMbtiType(type);
+    setShowMBTI(false);
+  };
+
+  if (showMBTI) {
+    return <MBTITest onComplete={handleMBTIComplete} />;
+  }
 
   if (isComplete && characterResult) {
     return <CharacterResults result={characterResult} onRestart={handleRestart} />;
