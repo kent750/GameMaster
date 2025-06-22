@@ -51,77 +51,77 @@ const traitMappings: Record<string, string[]> = {
 };
 
 const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
-  warrior: { strength: 20, agility: 10, endurance: 15 },
-  passionate: { strength: 15, mysticism: 5, charisma: 10 },
-  direct: { strength: 10, agility: 5, charisma: 8 },
-  destroyer: { strength: 25, mysticism: 10, endurance: 12 },
-  powerful: { strength: 20, wisdom: 5, endurance: 15 },
-  ambitious: { strength: 10, wisdom: 10, charisma: 12 },
+  warrior: { courage: 20, leadership: 15, cooperation: 10 },
+  passionate: { courage: 15, influence: 12, leadership: 8 },
+  direct: { leadership: 15, courage: 10, strategy: 5 },
+  destroyer: { courage: 25, cunning: 15, leadership: 10 },
+  powerful: { leadership: 20, courage: 15, influence: 10 },
+  ambitious: { leadership: 12, strategy: 15, cunning: 10 },
   
-  mystic: { mysticism: 20, wisdom: 15, charisma: 8 },
-  intuitive: { mysticism: 15, wisdom: 10, agility: 5 },
-  mysterious: { mysticism: 15, agility: 10, charisma: -5 },
-  sage: { wisdom: 25, mysticism: 10, charisma: 8 },
-  seeker: { wisdom: 15, agility: 10, endurance: 8 },
-  enlightened: { wisdom: 20, mysticism: 15, charisma: 10 },
-  transcendent: { mysticism: 25, wisdom: 20, charisma: 5 },
+  mystic: { strategy: 20, cunning: 15, influence: 8 },
+  intuitive: { strategy: 15, cooperation: 12, influence: 8 },
+  mysterious: { cunning: 20, strategy: 10, cooperation: -5 },
+  sage: { strategy: 25, cooperation: 10, influence: 8 },
+  seeker: { strategy: 15, courage: 10, cooperation: 8 },
+  enlightened: { strategy: 20, influence: 15, cooperation: 10 },
+  transcendent: { strategy: 25, influence: 15, cunning: 5 },
   
-  guardian: { strength: 15, wisdom: 15, endurance: 12 },
-  harmonious: { wisdom: 15, mysticism: 10, charisma: 10 },
-  balanced: { strength: 8, wisdom: 8, agility: 8, mysticism: 8, charisma: 8, endurance: 8 },
-  protective: { strength: 15, wisdom: 10, endurance: 15 },
-  vigilant: { agility: 15, wisdom: 10, endurance: 10 },
-  stable: { strength: 10, wisdom: 15, endurance: 20 },
-  nurturing: { wisdom: 15, mysticism: 10, charisma: 15 },
+  guardian: { cooperation: 20, leadership: 15, courage: 12 },
+  harmonious: { cooperation: 18, strategy: 10, influence: 10 },
+  balanced: { leadership: 8, strategy: 8, courage: 8, cunning: 8, cooperation: 8, influence: 8 },
+  protective: { cooperation: 20, courage: 15, leadership: 10 },
+  vigilant: { strategy: 15, cooperation: 12, courage: 10 },
+  stable: { cooperation: 18, leadership: 12, strategy: 8 },
+  nurturing: { cooperation: 20, influence: 15, leadership: 8 },
   
-  healer: { wisdom: 20, mysticism: 15, charisma: 12 },
-  compassionate: { wisdom: 15, mysticism: 10, charisma: 18 },
-  selfless: { wisdom: 20, strength: 5, charisma: 15 },
+  healer: { cooperation: 25, influence: 15, strategy: 8 },
+  compassionate: { cooperation: 20, influence: 18, leadership: 5 },
+  selfless: { cooperation: 25, leadership: 8, courage: 5 },
   
-  scholar: { wisdom: 25, mysticism: 10, endurance: -5 },
-  analytical: { wisdom: 20, agility: 5, mysticism: 8 },
-  wise: { wisdom: 20, mysticism: 10, charisma: 8 },
+  scholar: { strategy: 25, cunning: 10, cooperation: 5 },
+  analytical: { strategy: 20, cunning: 15, leadership: 5 },
+  wise: { strategy: 20, cooperation: 10, influence: 8 },
   
-  legend: { strength: 15, wisdom: 15, mysticism: 15, charisma: 20 },
-  eternal: { mysticism: 20, wisdom: 15, endurance: 18 }
+  legend: { leadership: 20, influence: 20, courage: 15 },
+  eternal: { influence: 18, strategy: 15, cooperation: 12 }
 };
 
 // MBTI type modifiers
 const mbtiModifiers: Record<string, Partial<CharacterAttributes>> = {
   // Analysts (NT)
-  'INTJ': { wisdom: 15, mysticism: 10, strength: -5, charisma: 5, endurance: 8 },
-  'INTP': { wisdom: 20, mysticism: 5, agility: -5, charisma: -8, endurance: 0 },
-  'ENTJ': { strength: 15, wisdom: 10, agility: 5, charisma: 18, endurance: 12 },
-  'ENTP': { agility: 15, wisdom: 10, strength: 5, charisma: 15, endurance: 5 },
+  'INTJ': { strategy: 20, cunning: 15, leadership: 10, cooperation: -5, influence: 5 },
+  'INTP': { strategy: 25, cunning: 10, leadership: -5, cooperation: -8, influence: 0 },
+  'ENTJ': { leadership: 25, strategy: 15, courage: 10, influence: 18, cooperation: 5 },
+  'ENTP': { influence: 20, strategy: 15, courage: 10, cunning: 8, leadership: 12 },
   
   // Diplomats (NF)
-  'INFJ': { mysticism: 20, wisdom: 10, strength: -10, charisma: 8, endurance: 5 },
-  'INFP': { mysticism: 15, wisdom: 5, agility: 5, charisma: 5, endurance: -5 },
-  'ENFJ': { wisdom: 15, mysticism: 10, agility: 5, charisma: 20, endurance: 8 },
-  'ENFP': { agility: 10, mysticism: 10, strength: 5, charisma: 18, endurance: 5 },
+  'INFJ': { cooperation: 20, strategy: 15, influence: 10, cunning: -5, leadership: 5 },
+  'INFP': { cooperation: 18, influence: 12, strategy: 8, cunning: -8, courage: 0 },
+  'ENFJ': { leadership: 20, cooperation: 18, influence: 25, strategy: 8, courage: 5 },
+  'ENFP': { influence: 22, cooperation: 15, courage: 12, leadership: 10, strategy: 8 },
   
   // Sentinels (SJ)
-  'ISTJ': { strength: 10, wisdom: 15, mysticism: -10, charisma: -5, endurance: 20 },
-  'ISFJ': { wisdom: 10, strength: 5, mysticism: 5, charisma: 12, endurance: 15 },
-  'ESTJ': { strength: 20, wisdom: 5, agility: 5, charisma: 15, endurance: 18 },
-  'ESFJ': { strength: 5, wisdom: 10, agility: 10, charisma: 20, endurance: 12 },
+  'ISTJ': { cooperation: 20, strategy: 15, leadership: 10, influence: -8, cunning: -5 },
+  'ISFJ': { cooperation: 25, leadership: 8, strategy: 10, influence: 12, courage: 5 },
+  'ESTJ': { leadership: 25, cooperation: 15, courage: 12, influence: 15, strategy: 10 },
+  'ESFJ': { cooperation: 22, influence: 20, leadership: 12, strategy: 5, courage: 8 },
   
   // Explorers (SP)
-  'ISTP': { agility: 20, strength: 10, wisdom: -5, charisma: -8, endurance: 15 },
-  'ISFP': { agility: 10, mysticism: 10, strength: 5, charisma: 8, endurance: 5 },
-  'ESTP': { agility: 15, strength: 15, wisdom: -10, charisma: 15, endurance: 18 },
-  'ESFP': { agility: 10, strength: 5, mysticism: 5, charisma: 20, endurance: 8 }
+  'ISTP': { courage: 20, cunning: 15, strategy: 10, cooperation: -8, influence: -5 },
+  'ISFP': { cooperation: 15, influence: 12, courage: 10, cunning: 5, strategy: 5 },
+  'ESTP': { courage: 20, influence: 18, leadership: 15, cunning: 8, strategy: -5 },
+  'ESFP': { influence: 25, cooperation: 15, courage: 12, leadership: 10, cunning: 0 }
 };
 
 function getMBTIModifiers(mbtiType: string): CharacterAttributes {
   const modifiers = mbtiModifiers[mbtiType] || {};
   return {
-    strength: modifiers.strength || 0,
-    wisdom: modifiers.wisdom || 0,
-    agility: modifiers.agility || 0,
-    mysticism: modifiers.mysticism || 0,
-    charisma: modifiers.charisma || 0,
-    endurance: modifiers.endurance || 0
+    leadership: modifiers.leadership || 0,
+    strategy: modifiers.strategy || 0,
+    courage: modifiers.courage || 0,
+    cunning: modifiers.cunning || 0,
+    cooperation: modifiers.cooperation || 0,
+    influence: modifiers.influence || 0
   };
 }
 
@@ -200,56 +200,56 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
 
   // Calculate attributes based on traits
   const baseAttributes: CharacterAttributes = {
-    strength: 50,
-    wisdom: 50,
-    agility: 50,
-    mysticism: 50,
-    charisma: 50,
-    endurance: 50
+    leadership: 50,
+    strategy: 50,
+    courage: 50,
+    cunning: 50,
+    cooperation: 50,
+    influence: 50
   };
 
   // Apply trait bonuses
   allTraits.forEach(trait => {
     const weights = attributeWeights[trait];
     if (weights) {
-      if (weights.strength) baseAttributes.strength += weights.strength;
-      if (weights.wisdom) baseAttributes.wisdom += weights.wisdom;
-      if (weights.agility) baseAttributes.agility += weights.agility;
-      if (weights.mysticism) baseAttributes.mysticism += weights.mysticism;
-      if (weights.charisma) baseAttributes.charisma += weights.charisma;
-      if (weights.endurance) baseAttributes.endurance += weights.endurance;
+      if (weights.leadership) baseAttributes.leadership += weights.leadership;
+      if (weights.strategy) baseAttributes.strategy += weights.strategy;
+      if (weights.courage) baseAttributes.courage += weights.courage;
+      if (weights.cunning) baseAttributes.cunning += weights.cunning;
+      if (weights.cooperation) baseAttributes.cooperation += weights.cooperation;
+      if (weights.influence) baseAttributes.influence += weights.influence;
     }
   });
 
   // Apply MBTI modifiers if available
   if (mbtiType) {
     const mbtiModifiers = getMBTIModifiers(mbtiType);
-    baseAttributes.strength += mbtiModifiers.strength;
-    baseAttributes.wisdom += mbtiModifiers.wisdom;
-    baseAttributes.agility += mbtiModifiers.agility;
-    baseAttributes.mysticism += mbtiModifiers.mysticism;
-    baseAttributes.charisma += mbtiModifiers.charisma;
-    baseAttributes.endurance += mbtiModifiers.endurance;
+    baseAttributes.leadership += mbtiModifiers.leadership;
+    baseAttributes.strategy += mbtiModifiers.strategy;
+    baseAttributes.courage += mbtiModifiers.courage;
+    baseAttributes.cunning += mbtiModifiers.cunning;
+    baseAttributes.cooperation += mbtiModifiers.cooperation;
+    baseAttributes.influence += mbtiModifiers.influence;
   }
 
   // Normalize attributes to 0-100 range
   const maxAttribute = Math.max(
-    baseAttributes.strength,
-    baseAttributes.wisdom,
-    baseAttributes.agility,
-    baseAttributes.mysticism,
-    baseAttributes.charisma,
-    baseAttributes.endurance
+    baseAttributes.leadership,
+    baseAttributes.strategy,
+    baseAttributes.courage,
+    baseAttributes.cunning,
+    baseAttributes.cooperation,
+    baseAttributes.influence
   );
 
   if (maxAttribute > 100) {
     const scale = 100 / maxAttribute;
-    baseAttributes.strength = Math.round(baseAttributes.strength * scale);
-    baseAttributes.wisdom = Math.round(baseAttributes.wisdom * scale);
-    baseAttributes.agility = Math.round(baseAttributes.agility * scale);
-    baseAttributes.mysticism = Math.round(baseAttributes.mysticism * scale);
-    baseAttributes.charisma = Math.round(baseAttributes.charisma * scale);
-    baseAttributes.endurance = Math.round(baseAttributes.endurance * scale);
+    baseAttributes.leadership = Math.round(baseAttributes.leadership * scale);
+    baseAttributes.strategy = Math.round(baseAttributes.strategy * scale);
+    baseAttributes.courage = Math.round(baseAttributes.courage * scale);
+    baseAttributes.cunning = Math.round(baseAttributes.cunning * scale);
+    baseAttributes.cooperation = Math.round(baseAttributes.cooperation * scale);
+    baseAttributes.influence = Math.round(baseAttributes.influence * scale);
   }
 
   // Generate description based on categories
@@ -298,15 +298,15 @@ function generateDescription(categories: string[], attributes: CharacterAttribut
   const baseDesc = descriptions[dominant] || descriptions[secondary] || "大いなる可能性を秘めた唯一無二の存在です。";
   
   const highestStat = Object.entries(attributes).reduce((max, [key, value]) => 
-    value > max.value ? { key, value } : max, { key: 'strength', value: 0 });
+    value > max.value ? { key, value } : max, { key: 'leadership', value: 0 });
 
   const statDescriptions: Record<string, string> = {
-    strength: "あなたの身体的な力と意志の強さが他者を圧倒します。",
-    wisdom: "あなたの洞察力と理解力が進むべき道を照らします。",
-    agility: "あなたの俊敏な反射神経と適応力がどんな状況でも力を発揮します。", 
-    mysticism: "あなたの神秘的な力との結びつきが並外れた能力をもたらします。",
-    charisma: "あなたの魅力と指導力が人々の心を動かします。",
-    endurance: "あなたの持久力と忍耐力が困難を乗り越える力となります。"
+    leadership: "あなたの指導力と戦略的な判断が仲間を勝利に導きます。",
+    strategy: "あなたの頭脳プレイと状況判断が戦況を有利に変えます。",
+    courage: "あなたの勇敢さと大胆な決断が困難を打ち破ります。", 
+    cunning: "あなたの巧妙な策略と計算が相手を上回ります。",
+    cooperation: "あなたの協調性と献身が チーム全体の力を引き出します。",
+    influence: "あなたの影響力とカリスマが場の雰囲気を支配します。"
   };
 
   return `${baseDesc} ${statDescriptions[highestStat.key]} あなたは${dominant}と${secondary}の本質を体現し、伝説的な道を定義する独特な特質の調和を創り出しています。`;

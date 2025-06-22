@@ -37,12 +37,12 @@ export interface Choice {
 }
 
 export interface CharacterAttributes {
-  strength: number;
-  wisdom: number;
-  agility: number;
-  mysticism: number;
-  charisma: number;
-  endurance: number;
+  leadership: number;
+  strategy: number;
+  courage: number;
+  cunning: number;
+  cooperation: number;
+  influence: number;
 }
 
 export interface QuizSession {

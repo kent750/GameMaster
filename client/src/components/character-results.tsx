@@ -10,40 +10,40 @@ interface CharacterResultsProps {
 export default function CharacterResults({ result, onRestart }: CharacterResultsProps) {
   const attributes = [
     {
-      name: "筋力",
-      value: result.attributes.strength,
-      icon: "🗡️",
-      gradient: "from-red-500 to-orange-500"
+      name: "主導",
+      value: result.attributes.leadership,
+      icon: "👑",
+      gradient: "from-amber-500 to-yellow-500"
     },
     {
-      name: "知恵", 
-      value: result.attributes.wisdom,
+      name: "知略", 
+      value: result.attributes.strategy,
       icon: "🧠",
       gradient: "from-blue-500 to-purple-500"
     },
     {
-      name: "敏捷",
-      value: result.attributes.agility,
-      icon: "🏃",
+      name: "勇敢",
+      value: result.attributes.courage,
+      icon: "⚔️",
+      gradient: "from-red-500 to-orange-500"
+    },
+    {
+      name: "策謀",
+      value: result.attributes.cunning,
+      icon: "🎭",
+      gradient: "from-purple-500 to-indigo-500"
+    },
+    {
+      name: "協力",
+      value: result.attributes.cooperation,
+      icon: "🤝",
       gradient: "from-green-500 to-emerald-500"
     },
     {
-      name: "神秘",
-      value: result.attributes.mysticism,
-      icon: "✨",
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      name: "魅力",
-      value: result.attributes.charisma,
-      icon: "👑",
-      gradient: "from-yellow-500 to-amber-500"
-    },
-    {
-      name: "持久力",
-      value: result.attributes.endurance,
-      icon: "💪",
-      gradient: "from-gray-500 to-slate-500"
+      name: "影響",
+      value: result.attributes.influence,
+      icon: "⭐",
+      gradient: "from-pink-500 to-rose-500"
     }
   ];
 
@@ -56,7 +56,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       });
     } else {
       // Fallback: copy to clipboard
-      const text = `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!\n\n筋力: ${result.attributes.strength}\n知恵: ${result.attributes.wisdom}\n敏捷: ${result.attributes.agility}\n神秘: ${result.attributes.mysticism}\n魅力: ${result.attributes.charisma}\n持久力: ${result.attributes.endurance}`;
+      const text = `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!\n\n主導: ${result.attributes.leadership}\n知略: ${result.attributes.strategy}\n勇敢: ${result.attributes.courage}\n策謀: ${result.attributes.cunning}\n協力: ${result.attributes.cooperation}\n影響: ${result.attributes.influence}`;
       navigator.clipboard.writeText(text);
     }
   };
@@ -115,7 +115,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           <div className="bg-slate-700 rounded-xl p-6 border border-slate-600 mb-8">
             <h3 className="text-xl font-semibold mb-6 flex items-center text-slate-100">
               <BarChart3 className="mr-3 text-amber-400" size={24} />
-              能力値
+              評価
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {attributes.map((attr) => (
