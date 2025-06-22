@@ -32,6 +32,18 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       value: result.attributes.mysticism,
       icon: "✨",
       gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      name: "魅力",
+      value: result.attributes.charisma,
+      icon: "👑",
+      gradient: "from-yellow-500 to-amber-500"
+    },
+    {
+      name: "持久力",
+      value: result.attributes.endurance,
+      icon: "💪",
+      gradient: "from-gray-500 to-slate-500"
     }
   ];
 
@@ -44,7 +56,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
       });
     } else {
       // Fallback: copy to clipboard
-      const text = `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!\n\n筋力: ${result.attributes.strength}\n知恵: ${result.attributes.wisdom}\n敏捷: ${result.attributes.agility}\n神秘: ${result.attributes.mysticism}`;
+      const text = `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!\n\n筋力: ${result.attributes.strength}\n知恵: ${result.attributes.wisdom}\n敏捷: ${result.attributes.agility}\n神秘: ${result.attributes.mysticism}\n魅力: ${result.attributes.charisma}\n持久力: ${result.attributes.endurance}`;
       navigator.clipboard.writeText(text);
     }
   };
@@ -105,7 +117,7 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
               <BarChart3 className="mr-3 text-amber-400" size={24} />
               能力値
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {attributes.map((attr) => (
                 <div key={attr.name} className="text-center">
                   <div className={`w-16 h-16 bg-gradient-to-br ${attr.gradient} rounded-full flex items-center justify-center mx-auto mb-2`}>

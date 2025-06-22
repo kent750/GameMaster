@@ -41,6 +41,8 @@ export interface CharacterAttributes {
   wisdom: number;
   agility: number;
   mysticism: number;
+  charisma: number;
+  endurance: number;
 }
 
 export interface QuizSession {

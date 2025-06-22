@@ -51,66 +51,66 @@ const traitMappings: Record<string, string[]> = {
 };
 
 const attributeWeights: Record<string, Partial<CharacterAttributes>> = {
-  warrior: { strength: 20, agility: 10 },
-  passionate: { strength: 15, mysticism: 5 },
-  direct: { strength: 10, agility: 5 },
-  destroyer: { strength: 25, mysticism: 10 },
-  powerful: { strength: 20, wisdom: 5 },
-  ambitious: { strength: 10, wisdom: 10 },
+  warrior: { strength: 20, agility: 10, endurance: 15 },
+  passionate: { strength: 15, mysticism: 5, charisma: 10 },
+  direct: { strength: 10, agility: 5, charisma: 8 },
+  destroyer: { strength: 25, mysticism: 10, endurance: 12 },
+  powerful: { strength: 20, wisdom: 5, endurance: 15 },
+  ambitious: { strength: 10, wisdom: 10, charisma: 12 },
   
-  mystic: { mysticism: 20, wisdom: 15 },
-  intuitive: { mysticism: 15, wisdom: 10 },
-  mysterious: { mysticism: 15, agility: 10 },
-  sage: { wisdom: 25, mysticism: 10 },
-  seeker: { wisdom: 15, agility: 10 },
-  enlightened: { wisdom: 20, mysticism: 15 },
-  transcendent: { mysticism: 25, wisdom: 20 },
+  mystic: { mysticism: 20, wisdom: 15, charisma: 8 },
+  intuitive: { mysticism: 15, wisdom: 10, agility: 5 },
+  mysterious: { mysticism: 15, agility: 10, charisma: -5 },
+  sage: { wisdom: 25, mysticism: 10, charisma: 8 },
+  seeker: { wisdom: 15, agility: 10, endurance: 8 },
+  enlightened: { wisdom: 20, mysticism: 15, charisma: 10 },
+  transcendent: { mysticism: 25, wisdom: 20, charisma: 5 },
   
-  guardian: { strength: 15, wisdom: 15 },
-  harmonious: { wisdom: 15, mysticism: 10 },
-  balanced: { strength: 10, wisdom: 10, agility: 10, mysticism: 10 },
-  protective: { strength: 15, wisdom: 10 },
-  vigilant: { agility: 15, wisdom: 10 },
-  stable: { strength: 10, wisdom: 15 },
-  nurturing: { wisdom: 15, mysticism: 10 },
+  guardian: { strength: 15, wisdom: 15, endurance: 12 },
+  harmonious: { wisdom: 15, mysticism: 10, charisma: 10 },
+  balanced: { strength: 8, wisdom: 8, agility: 8, mysticism: 8, charisma: 8, endurance: 8 },
+  protective: { strength: 15, wisdom: 10, endurance: 15 },
+  vigilant: { agility: 15, wisdom: 10, endurance: 10 },
+  stable: { strength: 10, wisdom: 15, endurance: 20 },
+  nurturing: { wisdom: 15, mysticism: 10, charisma: 15 },
   
-  healer: { wisdom: 20, mysticism: 15 },
-  compassionate: { wisdom: 15, mysticism: 10 },
-  selfless: { wisdom: 20, strength: 5 },
+  healer: { wisdom: 20, mysticism: 15, charisma: 12 },
+  compassionate: { wisdom: 15, mysticism: 10, charisma: 18 },
+  selfless: { wisdom: 20, strength: 5, charisma: 15 },
   
-  scholar: { wisdom: 25, mysticism: 10 },
-  analytical: { wisdom: 20, agility: 5 },
-  wise: { wisdom: 20, mysticism: 10 },
+  scholar: { wisdom: 25, mysticism: 10, endurance: -5 },
+  analytical: { wisdom: 20, agility: 5, mysticism: 8 },
+  wise: { wisdom: 20, mysticism: 10, charisma: 8 },
   
-  legend: { strength: 15, wisdom: 15, mysticism: 15 },
-  eternal: { mysticism: 20, wisdom: 15 }
+  legend: { strength: 15, wisdom: 15, mysticism: 15, charisma: 20 },
+  eternal: { mysticism: 20, wisdom: 15, endurance: 18 }
 };
 
 // MBTI type modifiers
 const mbtiModifiers: Record<string, Partial<CharacterAttributes>> = {
   // Analysts (NT)
-  'INTJ': { wisdom: 15, mysticism: 10, strength: -5 },
-  'INTP': { wisdom: 20, mysticism: 5, agility: -5 },
-  'ENTJ': { strength: 15, wisdom: 10, agility: 5 },
-  'ENTP': { agility: 15, wisdom: 10, strength: 5 },
+  'INTJ': { wisdom: 15, mysticism: 10, strength: -5, charisma: 5, endurance: 8 },
+  'INTP': { wisdom: 20, mysticism: 5, agility: -5, charisma: -8, endurance: 0 },
+  'ENTJ': { strength: 15, wisdom: 10, agility: 5, charisma: 18, endurance: 12 },
+  'ENTP': { agility: 15, wisdom: 10, strength: 5, charisma: 15, endurance: 5 },
   
   // Diplomats (NF)
-  'INFJ': { mysticism: 20, wisdom: 10, strength: -10 },
-  'INFP': { mysticism: 15, wisdom: 5, agility: 5 },
-  'ENFJ': { wisdom: 15, mysticism: 10, agility: 5 },
-  'ENFP': { agility: 10, mysticism: 10, strength: 5 },
+  'INFJ': { mysticism: 20, wisdom: 10, strength: -10, charisma: 8, endurance: 5 },
+  'INFP': { mysticism: 15, wisdom: 5, agility: 5, charisma: 5, endurance: -5 },
+  'ENFJ': { wisdom: 15, mysticism: 10, agility: 5, charisma: 20, endurance: 8 },
+  'ENFP': { agility: 10, mysticism: 10, strength: 5, charisma: 18, endurance: 5 },
   
   // Sentinels (SJ)
-  'ISTJ': { strength: 10, wisdom: 15, mysticism: -10 },
-  'ISFJ': { wisdom: 10, strength: 5, mysticism: 5 },
-  'ESTJ': { strength: 20, wisdom: 5, agility: 5 },
-  'ESFJ': { strength: 5, wisdom: 10, agility: 10 },
+  'ISTJ': { strength: 10, wisdom: 15, mysticism: -10, charisma: -5, endurance: 20 },
+  'ISFJ': { wisdom: 10, strength: 5, mysticism: 5, charisma: 12, endurance: 15 },
+  'ESTJ': { strength: 20, wisdom: 5, agility: 5, charisma: 15, endurance: 18 },
+  'ESFJ': { strength: 5, wisdom: 10, agility: 10, charisma: 20, endurance: 12 },
   
   // Explorers (SP)
-  'ISTP': { agility: 20, strength: 10, wisdom: -5 },
-  'ISFP': { agility: 10, mysticism: 10, strength: 5 },
-  'ESTP': { agility: 15, strength: 15, wisdom: -10 },
-  'ESFP': { agility: 10, strength: 5, mysticism: 5 }
+  'ISTP': { agility: 20, strength: 10, wisdom: -5, charisma: -8, endurance: 15 },
+  'ISFP': { agility: 10, mysticism: 10, strength: 5, charisma: 8, endurance: 5 },
+  'ESTP': { agility: 15, strength: 15, wisdom: -10, charisma: 15, endurance: 18 },
+  'ESFP': { agility: 10, strength: 5, mysticism: 5, charisma: 20, endurance: 8 }
 };
 
 function getMBTIModifiers(mbtiType: string): CharacterAttributes {
@@ -119,7 +119,9 @@ function getMBTIModifiers(mbtiType: string): CharacterAttributes {
     strength: modifiers.strength || 0,
     wisdom: modifiers.wisdom || 0,
     agility: modifiers.agility || 0,
-    mysticism: modifiers.mysticism || 0
+    mysticism: modifiers.mysticism || 0,
+    charisma: modifiers.charisma || 0,
+    endurance: modifiers.endurance || 0
   };
 }
 
@@ -201,7 +203,9 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
     strength: 50,
     wisdom: 50,
     agility: 50,
-    mysticism: 50
+    mysticism: 50,
+    charisma: 50,
+    endurance: 50
   };
 
   // Apply trait bonuses
@@ -212,6 +216,8 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
       if (weights.wisdom) baseAttributes.wisdom += weights.wisdom;
       if (weights.agility) baseAttributes.agility += weights.agility;
       if (weights.mysticism) baseAttributes.mysticism += weights.mysticism;
+      if (weights.charisma) baseAttributes.charisma += weights.charisma;
+      if (weights.endurance) baseAttributes.endurance += weights.endurance;
     }
   });
 
@@ -222,6 +228,8 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
     baseAttributes.wisdom += mbtiModifiers.wisdom;
     baseAttributes.agility += mbtiModifiers.agility;
     baseAttributes.mysticism += mbtiModifiers.mysticism;
+    baseAttributes.charisma += mbtiModifiers.charisma;
+    baseAttributes.endurance += mbtiModifiers.endurance;
   }
 
   // Normalize attributes to 0-100 range
@@ -229,7 +237,9 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
     baseAttributes.strength,
     baseAttributes.wisdom,
     baseAttributes.agility,
-    baseAttributes.mysticism
+    baseAttributes.mysticism,
+    baseAttributes.charisma,
+    baseAttributes.endurance
   );
 
   if (maxAttribute > 100) {
@@ -238,6 +248,8 @@ export function calculateCharacter(choices: number[], mbtiType?: string): Charac
     baseAttributes.wisdom = Math.round(baseAttributes.wisdom * scale);
     baseAttributes.agility = Math.round(baseAttributes.agility * scale);
     baseAttributes.mysticism = Math.round(baseAttributes.mysticism * scale);
+    baseAttributes.charisma = Math.round(baseAttributes.charisma * scale);
+    baseAttributes.endurance = Math.round(baseAttributes.endurance * scale);
   }
 
   // Generate description based on categories
@@ -292,7 +304,9 @@ function generateDescription(categories: string[], attributes: CharacterAttribut
     strength: "あなたの身体的な力と意志の強さが他者を圧倒します。",
     wisdom: "あなたの洞察力と理解力が進むべき道を照らします。",
     agility: "あなたの俊敏な反射神経と適応力がどんな状況でも力を発揮します。", 
-    mysticism: "あなたの神秘的な力との結びつきが並外れた能力をもたらします。"
+    mysticism: "あなたの神秘的な力との結びつきが並外れた能力をもたらします。",
+    charisma: "あなたの魅力と指導力が人々の心を動かします。",
+    endurance: "あなたの持久力と忍耐力が困難を乗り越える力となります。"
   };
 
   return `${baseDesc} ${statDescriptions[highestStat.key]} あなたは${dominant}と${secondary}の本質を体現し、伝説的な道を定義する独特な特質の調和を創り出しています。`;
