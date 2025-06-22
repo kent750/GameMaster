@@ -99,3 +99,5 @@ Changelog:
 - June 20, 2025. Initial setup
 - June 21, 2025. Updated interface to Japanese language - all text in UI now displays in Japanese including questions, choices, buttons, and result descriptions
 - June 21, 2025. Simplified MBTI selection to direct choice from 16 personality types instead of quiz format - users now select from categorized grid of all 16 types with descriptions
+- June 22, 2025. Implemented dark theme with gold accents and auto-progression functionality - unified color scheme with low-saturation gold (#d4af37 variants), added 0.5s auto-progression on selection
+- June 22, 2025. Replaced evaluation icons with PNG images - converted 6 evaluation categories (主導/知略/勇敢/策謀/協力/影響) from emoji to custom image assets, resolved Git conflicts and syntax errors

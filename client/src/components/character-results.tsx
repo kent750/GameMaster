@@ -2,7 +2,6 @@ import { Crown, UserCircle, Scroll, BarChart3, Share, RotateCcw } from "lucide-r
 import { Button } from "@/components/ui/button";
 import type { CharacterResult } from "@shared/schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 
@@ -10,30 +9,6 @@ interface CharacterResultsProps {
   result: CharacterResult;
   onRestart: () => void;
 }
-
-const traitIcons: Record<keyof Character, React.ReactNode> = {
-  influence: <img src="/assets/influence.png" alt="influence" className="w-12 h-12" />,
-  manipulation: (
-    <img src="/assets/manipulation.png" alt="manipulation" className="w-12 h-12" />
-  ),
-  cooperation: (
-    <img src="/assets/cooperation.png" alt="cooperation" className="w-12 h-12" />
-  ),
-  leadership: (
-    <img src="/assets/leadership.png" alt="leadership" className="w-12 h-12" />
-  ),
-  bravery: <img src="/assets/bravery.png" alt="bravery" className="w-12 h-12" />,
-  intellect: <img src="/assets/intellect.png" alt="intellect" className="w-12 h-12" />,
-};
-
-const traitNames: Record<keyof Character, string> = {
-  influence: "影響",
-  manipulation: "策謀",
-  cooperation: "協力",
-  leadership: "主導",
-  bravery: "勇敢",
-  intellect: "知略",
-};
 
 export default function CharacterResults({ result, onRestart }: CharacterResultsProps) {
   const attributes = [
@@ -76,33 +51,36 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
   ];
 
   const handleShare = () => {
+    const shareText = `私のキャラクター結果:\n${result.categories.join(", ")}\n\n${result.description}`;
     if (navigator.share) {
       navigator.share({
-        title: "私のキャラクター創造結果",
-        text: `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!`,
-        url: window.location.href
+        title: 'キャラクター創世記の結果',
+        text: shareText,
       });
     } else {
-      // Fallback: copy to clipboard
-      const text = `私のキャラクター原型を発見しました: ${result.categories.join(" & ")}!\n\n主導: ${result.attributes.leadership}\n知略: ${result.attributes.strategy}\n勇敢: ${result.attributes.courage}\n策謀: ${result.attributes.cunning}\n協力: ${result.attributes.cooperation}\n影響: ${result.attributes.influence}`;
-      navigator.clipboard.writeText(text);
+      navigator.clipboard.writeText(shareText);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 mist-bg" style={{ backgroundColor: 'var(--game-dark)' }}>
-      <div className="max-w-4xl w-full">
-        <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
-          <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-game-gold-bright to-game-gold rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-              <Crown className="text-3xl text-white" size={40} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_80%,rgba(120,119,198,0.08),transparent_50%)]" />
+      
+      <div className="relative z-10">
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <Crown className="text-game-gold" size={32} />
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-game-gold to-game-gold-bright bg-clip-text text-transparent">
+                あなたのキャラクター
+              </h1>
+              <Crown className="text-game-gold" size={32} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-100">あなたのキャラクターが覚醒しました</h2>
-            <div className="mb-4">
-              <div className="text-2xl font-bold text-game-gold mb-2">No.{result.characterNumber}</div>
-              <div className="text-xl text-game-gold-dim">{result.statusTitle}</div>
-            </div>
-            <p className="text-slate-300">あなたの選択が運命を築きました...</p>
+            <p className="text-slate-300 text-lg">運命が明かされました</p>
           </div>
 
           {/* Character Identity */}
@@ -162,18 +140,18 @@ export default function CharacterResults({ result, onRestart }: CharacterResults
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={handleShare}
-              className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white"
+              className="bg-gradient-to-r from-game-gold to-game-gold-bright hover:from-game-gold-bright hover:to-game-gold text-slate-900 font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <Share className="mr-2" size={16} />
+              <Share className="mr-2" size={20} />
               結果を共有
             </Button>
             <Button
               onClick={onRestart}
               variant="outline"
-              className="border-purple-500 text-purple-400 hover:bg-purple-500/20"
+              className="border-game-gold text-game-gold hover:bg-game-gold/10 px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
-              <RotateCcw className="mr-2" size={16} />
-              新しい旅を始める
+              <RotateCcw className="mr-2" size={20} />
+              もう一度診断
             </Button>
           </div>
         </div>
